@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="/layout :: head">
+    <title id="pageTitle">Customer List</title>
+</head>
+<body>
+<h3>Customer List</h3>
+<div th:if="${message}">Thêm mới thành công</div>
+<p>There are <span th:text="${customers.size()}"></span> customer(s) in list</p>
+<a th:href="@{/customer/create-form}">Add Customer</a>
+<table id="customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c,l : ${customers}">
+        <td th:text="${l.count}">100</td>
+        <td><a th:href="@{/customer/{id}/info(id=${c.getId()})}" th:text="${c.name}"></a></td>
+        <td th:text="${c.email}">chinguyen@gmail.com</td>
+        <td th:text="${c.address}">Sài Gòn</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<footer th:replace="/layout :: footer"></footer>
+</html>
